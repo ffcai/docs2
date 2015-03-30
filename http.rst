@@ -1,9 +1,12 @@
-# HTTP
+HTTP
+****
 
-## 1. Keep-alive
+1. Keep-alive
+=============
 
 1. Keep-alive incoming connections.
-  
+-----------------------------------
+
 		proxy.config.http.keep_alive_enabled_in
 
 	Set to `1`: Test if client re-uses the TCP connection to ATS for new HTTP transactions.
