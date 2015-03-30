@@ -1,0 +1,436 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>&lt;no title&gt; &mdash; ATS Test 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="ATS Test 0.1 documentation" href="index.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">ATS Test 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <p># HTTP</p>
+<p>## 1. Keep-alive</p>
+<ol class="arabic">
+<li><p class="first">Keep-alive incoming connections.</p>
+<blockquote>
+<div><blockquote>
+<div><p>proxy.config.http.keep_alive_enabled_in</p>
+</div></blockquote>
+<p>Set to <cite>1</cite>: Test if client re-uses the TCP connection to ATS for new HTTP transactions.</p>
+<p>Set to <cite>0</cite>: Test if client opens new TCP connections to ATS for new HTTP transactions.</p>
+</div></blockquote>
+</li>
+</ol>
+<ol class="arabic">
+<li><p class="first">Keep-alive outgoing connections.</p>
+<blockquote>
+<div><blockquote>
+<div><p>proxy.config.http.keep_alive_enabled_out</p>
+</div></blockquote>
+<p>Set to <cite>1</cite>: Test if ATS re-uses the TCP connection to origin server for new HTTP transactions.</p>
+<p>Set to <cite>0</cite>: Test if ATS opens new TCP connections to origin server for new HTTP transactions.</p>
+</div></blockquote>
+</li>
+</ol>
+<ol class="arabic">
+<li><p class="first">Keep-alive connections for POST requests.</p>
+<blockquote>
+<div><blockquote>
+<div><p>proxy.config.http.keep_alive_post_out</p>
+</div></blockquote>
+<p>Set to <cite>1</cite>: Test if ATS re-uses the TCP connection for new POST requests.</p>
+<p>Set to <cite>0</cite>: Test if ATS opens new TCP connections for new POST requests.</p>
+</div></blockquote>
+</li>
+</ol>
+<p><strong>Done</strong>: [test_keepalive](<a class="reference external" href="https://github.com/apache/trafficserver/blob/master/ci/new_tsqa/tests/test_keepalive.py">https://github.com/apache/trafficserver/blob/master/ci/new_tsqa/tests/test_keepalive.py</a>), [test_keepalive2](<a class="reference external" href="https://git.corp.yahoo.com/ffcai/ATSTestScenarios/blob/master/HTTP/test_keepalive2.py">https://git.corp.yahoo.com/ffcai/ATSTestScenarios/blob/master/HTTP/test_keepalive2.py</a>)</p>
+<p>## 2. Connection Timeouts</p>
+<ol class="arabic">
+<li><p class="first">Keep-alive connection timeout</p>
+<blockquote>
+<div><blockquote>
+<div><p>proxy.config.http.keep_alive_no_activity_timeout_in
+proxy.config.http.keep_alive_no_activity_timeout_out</p>
+</div></blockquote>
+<p>Test if ATS closes TCP connection to client after <cite>N</cite> seconds since completing last HTTP transaction.</p>
+<p>Test if ATS closes TCP connection to origin server after <cite>N</cite> seconds since completing last HTTP transaction.</p>
+</div></blockquote>
+</li>
+</ol>
+<ol class="arabic">
+<li><p class="first">No activity transacion timeout</p>
+<blockquote>
+<div><blockquote>
+<div><p>proxy.config.http.transaction_no_activity_timeout_in
+proxy.config.http.transaction_no_activity_timeout_out</p>
+</div></blockquote>
+<p>Test if ATS keeps connection to client for <cite>N</cite> seconds when a transaction stalls.</p>
+<p>Test if ATS keeps connection to origin server for <cite>N</cite> seconds when a transaction stalls.</p>
+</div></blockquote>
+</li>
+</ol>
+<ol class="arabic">
+<li><p class="first">Active transaction timeout</p>
+<blockquote>
+<div><blockquote>
+<div><p>proxy.config.http.transaction_active_timeout_in
+proxy.config.http.transaction_active_timeout_out</p>
+</div></blockquote>
+<p>Test if ATS keeps connection to client for <cite>N</cite> seconds, then close the connection even if the transfer to client is not complete.</p>
+<p>Test if ATS keeps connection to origin server for <cite>N</cite> seconds, then close the connection even if the transfer to origin server is not complete.</p>
+</div></blockquote>
+</li>
+</ol>
+<ol class="arabic">
+<li><p class="first">No activity connection timeout</p>
+<blockquote>
+<div><blockquote>
+<div><p>proxy.config.http.accept_no_activity_timeout</p>
+</div></blockquote>
+<p>Set to <cite>N</cite>: Test if ATS closes a connection that has no activity after <cite>N</cite> seconds.</p>
+</div></blockquote>
+</li>
+</ol>
+<ol class="arabic">
+<li><p class="first">Active background fill timeout</p>
+<blockquote>
+<div><blockquote>
+<div><p>proxy.config.http.background_fill_active_timeout</p>
+</div></blockquote>
+<p>Set to <cite>N</cite>: Test if ATS keeps a background fill for <cite>N</cite> seconds before giving up and dropping the origin server connection.</p>
+</div></blockquote>
+</li>
+</ol>
+<ol class="arabic">
+<li><p class="first">Background fill completed threshold</p>
+<blockquote>
+<div><blockquote>
+<div><p>proxy.config.http.background_fill_completed_threshold</p>
+</div></blockquote>
+<p>Set to <cite>0.x</cite>: Test the proportion of total document size already transferred when a client aborts at which the proxy continues fetching the document from the origin server to get it into the cache (a background fill).</p>
+</div></blockquote>
+</li>
+</ol>
+<p><strong>Done</strong>: [test_timeouts](<a class="reference external" href="https://git.corp.yahoo.com/ffcai/ATSTestScenarios/blob/master/HTTP/test_timeouts.py">https://git.corp.yahoo.com/ffcai/ATSTestScenarios/blob/master/HTTP/test_timeouts.py</a>)</p>
+<p>## 3. Origin Server Connect Attempts</p>
+<ol class="arabic">
+<li><p class="first">Connect attempts timeout</p>
+<blockquote>
+<div><blockquote>
+<div><p>proxy.config.http.connect_attempts_timeout</p>
+</div></blockquote>
+<p>Set to <cite>N</cite>: Test if ATS attemps to connect to origin server for <cite>N</cite> seconds before receive the first byte.</p>
+</div></blockquote>
+</li>
+</ol>
+<ol class="arabic">
+<li><p class="first">Connect attempts timeout for POST/PUT requests</p>
+<blockquote>
+<div><blockquote>
+<div><p>proxy.config.http.post_connect_attempts_timeout</p>
+</div></blockquote>
+<p>Set to <cite>N</cite>: Test if ATS attemps to connect to origin server for <cite>N</cite> seconds before receive the first byte, when the client requests is a <cite>POST</cite> or <cite>PUT</cite> request.</p>
+</div></blockquote>
+</li>
+</ol>
+<ol class="arabic">
+<li><p class="first">Maximum number of connection retries</p>
+<blockquote>
+<div><blockquote>
+<div><p>proxy.config.http.connect_attempts_max_retries</p>
+</div></blockquote>
+<p>Set to <cite>N</cite>: Test if ATS retries <cite>N</cite> times, before the origin is marked dead.</p>
+</div></blockquote>
+</li>
+</ol>
+<ol class="arabic">
+<li><p class="first">Maximum number of connection retries to dead server</p>
+<blockquote>
+<div><blockquote>
+<div><p>proxy.config.http.connect_attempts_max_retries_dead_server</p>
+</div></blockquote>
+<p>Set to <cite>N</cite>: Test if ATS retries <cite>N</cite> times, after the origin is marked dead.</p>
+</div></blockquote>
+</li>
+</ol>
+<ol class="arabic">
+<li><p class="first">Maximum number of origin server connections</p>
+<blockquote>
+<div><blockquote>
+<div><p>proxy.config.http.server_max_connections</p>
+</div></blockquote>
+<p>Set to <cite>N</cite>: Test if ATS limits the number of socket connections across all origin servers to <cite>N</cite>.</p>
+</div></blockquote>
+</li>
+</ol>
+<ol class="arabic">
+<li><p class="first">Minimum number of origin server keep-alive connections</p>
+<blockquote>
+<div><blockquote>
+<div><p>proxy.config.http.origin_min_keep_alive_connections</p>
+</div></blockquote>
+<p>Set to <cite>N</cite>: Test if ATS keeps at least <cite>N</cite> connections open to origin server when connection is opened.</p>
+</div></blockquote>
+</li>
+</ol>
+<ol class="arabic">
+<li><p class="first">Maximum number of connection attempts with round-robin</p>
+<blockquote>
+<div><blockquote>
+<div><p>proxy.config.http.connect_attempts_rr_retries</p>
+</div></blockquote>
+<p>Set to <cite>N</cite>: Test if ATS retries <cite>N</cite> times before a round-robin entry is marked as ‘down’, if a server has round-robin DNS entries.</p>
+</div></blockquote>
+</li>
+</ol>
+<ol class="arabic">
+<li><p class="first">Server down cache time</p>
+<blockquote>
+<div><blockquote>
+<div><p>proxy.config.http.down_server.cache_time</p>
+</div></blockquote>
+<p>Set to <cite>N</cite>: Test if ATS remembers an origin server as unreachable for <cite>N</cite> seconds.</p>
+</div></blockquote>
+</li>
+</ol>
+<ol class="arabic">
+<li><p class="first">Server down abort threshold</p>
+<blockquote>
+<div><blockquote>
+<div><p>proxy.config.http.down_server.abort_threshold</p>
+</div></blockquote>
+<p>Set to <cite>N</cite>: Test that, after a client abandons a request because an origin server was too slow in sending the response header, if ATS marks that origin server as unavailable after <cite>N</cite> seconds.</p>
+</div></blockquote>
+</li>
+</ol>
+<p>## 4. 100 Continue Response</p>
+<blockquote>
+<div>proxy.config.http.send_100_continue_response</div></blockquote>
+<p>Set to <cite>0</cite>: Test if ATS buffers the request until the post body has been recieved and then send the request to origin.</p>
+<p>Set to <cite>1</cite>: Test if ATS immediately returns a <cite>100 Continue</cite> response when receiving a <cite>POST</cite> request with <cite>Expect: 100-continue</cite> header, without waiting for the post body.</p>
+<p>## 5. 408 Post Timeout Response</p>
+<blockquote>
+<div>proxy.config.http.send_408_post_timeout_response</div></blockquote>
+<p>Set to <cite>1</cite>: Test if ATS sends a <cite>408 Request Timeout</cite> response when a <cite>POST</cite> request timeout happends.</p>
+<p>## 6. Redirection</p>
+<blockquote>
+<div>proxy.config.http.redirection_enabled
+proxy.config.http.number_of_redirections</div></blockquote>
+<p>Set <cite>proxy.config.http.redirection_enabled</cite> to 1, <cite>proxy.config.http.number_of_redirections</cite> to <cite>N</cite>: Test if ATS do the redirecion for client, with a limit number of <cite>N-1</cite>.</p>
+<p>## 7. Server Session</p>
+<blockquote>
+<div>proxy.config.http.share_server_sessions
+proxy.config.http.server_session_sharing.match
+proxy.config.http.server_session_sharing.pool
+proxy.config.http.attach_server_session_to_client</div></blockquote>
+<p>...</p>
+<p>## 8. Headers</p>
+<ol class="arabic">
+<li><p class="first">Via</p>
+<blockquote>
+<div><blockquote>
+<div><p>proxy.config.http.insert_request_via_str
+proxy.config.http.insert_response_via_str</p>
+</div></blockquote>
+<p>Set to <cite>0</cite> - <cite>4</cite>: Test if <cite>via</cite> header shows up with configurated verbosity in request or response.</p>
+</div></blockquote>
+</li>
+</ol>
+<ol class="arabic">
+<li><p class="first">Server</p>
+<blockquote>
+<div><blockquote>
+<div><p>proxy.config.http.response_server_enabled
+proxy.config.http.response_server_str</p>
+</div></blockquote>
+<p>Set to <cite>0</cite>: Test if ATS sends response without a <cite>Server</cite> header.</p>
+<p>Set to <cite>1</cite> - <cite>2</cite>: Test if ATS adds a <cite>Server</cite> header in response.</p>
+</div></blockquote>
+</li>
+</ol>
+<ol class="arabic">
+<li><p class="first">Age</p>
+<blockquote>
+<div><blockquote>
+<div><p>proxy.config.http.insert_age_in_response</p>
+</div></blockquote>
+<p>Set to <cite>0</cite>: Test if ATS sends response without an <cite>Age</cite> header.</p>
+<p>Set to <cite>1</cite>: Test if ATS sends response with an <cite>Age</cite> header.</p>
+</div></blockquote>
+</li>
+</ol>
+<ol class="arabic">
+<li><p class="first">From</p>
+<blockquote>
+<div><blockquote>
+<div><p>proxy.config.http.anonymize_remove_from</p>
+</div></blockquote>
+<p>Set to <cite>1</cite>: Test if ATS removes the <cite>from</cite> header.</p>
+</div></blockquote>
+</li>
+</ol>
+<ol class="arabic">
+<li><p class="first">Referrer</p>
+<blockquote>
+<div><blockquote>
+<div><p>proxy.config.http.anonymize_remove_referer</p>
+</div></blockquote>
+<p>Set to <cite>1</cite>: Test if ATS removes the <cite>referrer</cite> header.</p>
+</div></blockquote>
+</li>
+</ol>
+<ol class="arabic">
+<li><p class="first">User-agent</p>
+<blockquote>
+<div><blockquote>
+<div><p>proxy.config.http.anonymize_remove_user_agent</p>
+</div></blockquote>
+<p>Set to <cite>1</cite>: Test if ATS removes the <cite>User-agent</cite> header.</p>
+</div></blockquote>
+</li>
+</ol>
+<ol class="arabic">
+<li><p class="first">Cookie</p>
+<blockquote>
+<div><blockquote>
+<div><p>proxy.config.http.anonymize_remove_cookie</p>
+</div></blockquote>
+<p>Set to <cite>1</cite>: Test if ATS removes the <cite>Cookie</cite> header.</p>
+</div></blockquote>
+</li>
+</ol>
+<ol class="arabic">
+<li><p class="first">Client-IP</p>
+<blockquote>
+<div><blockquote>
+<div><p>proxy.config.http.anonymize_remove_client_ip</p>
+</div></blockquote>
+<p>Set to <cite>1</cite>: Test if ATS removes the <cite>Client-IP</cite> header.</p>
+</div></blockquote>
+</li>
+</ol>
+<ol class="arabic">
+<li><p class="first">X-Forwarded-For</p>
+<blockquote>
+<div><blockquote>
+<div><p>proxy.config.http.insert_squid_x_forwarded_for</p>
+</div></blockquote>
+<p>Set to <cite>1</cite>: Test if ATS adds the client IP address to the <cite>X-Forwarded-For</cite> header.</p>
+</div></blockquote>
+</li>
+</ol>
+<ol class="arabic">
+<li><p class="first">Accept-Encoding</p>
+<blockquote>
+<div><blockquote>
+<div><p>proxy.config.http.normalize_ae_gzip</p>
+</div></blockquote>
+<p>Set to <cite>1</cite>: Test if ATS normalizes all <cite>Accept-Encoding</cite> headers.</p>
+</div></blockquote>
+</li>
+</ol>
+<ol class="arabic">
+<li><p class="first">Others</p>
+<blockquote>
+<div><blockquote>
+<div><p>proxy.config.http.anonymize_other_header_list</p>
+</div></blockquote>
+<p>Set to <cite>header1;header2;...</cite>: Test if ATS removes these comma separated list of headers from outgoing requests.</p>
+</div></blockquote>
+</li>
+</ol>
+<p>## 9. Domain Expansion.</p>
+<blockquote>
+<div>proxy.config.http.enable_url_expandomatic</div></blockquote>
+<p>Set to <cite>1</cite>: Test if ATS does domain expansion, which resolves unqualified hostnames by prepending with <cite>www.</cite> and appending with <cite>.com</cite> before redirecting to the expanded address.</p>
+<p>## 10. Chunked Response</p>
+<blockquote>
+<div>proxy.config.http.chunking_enabled</div></blockquote>
+<p>Set to <cite>0</cite> - <cite>3</cite>: Test if ATS can generate a chunked response.</p>
+<p>## 11. HTTP 1.1 Requests</p>
+<blockquote>
+<div>proxy.config.http.send_http11_requests</div></blockquote>
+<p>Set to <cite>0</cite> - <cite>3</cite>: Test if ATS uses HTTP/1.1 to communicate with the origin server.</p>
+<p># 12. Use Client Tartget Address</p>
+<blockquote>
+<div>proxy.config.http.use_client_target_addr</div></blockquote>
+<p>Set to <cite>1</cite>: Test if ATS uses the same origin server address as the client in fully transparent ports.</p>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/http.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">ATS Test 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Feifei Cai.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
+    </div>
+  </body>
+</html>
