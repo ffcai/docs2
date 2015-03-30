@@ -60,7 +60,7 @@
 <p>Set <code class="docutils literal"><span class="pre">proxy.config.ssl.SSLv2</span></code> to <code class="docutils literal"><span class="pre">0</span></code>, ..., <code class="docutils literal"><span class="pre">proxy.config.ssl.TLSv1</span></code> to <code class="docutils literal"><span class="pre">1</span></code>, ...: Test if ATS does not use SSL version 2, ..., uses TLS version 1, ..., when it handshakes with client.</p>
 </div>
 <div class="section" id="protocol-version-ats-as-client">
-<h2>## Protocol Version (ATS as client)<a class="headerlink" href="#protocol-version-ats-as-client" title="Permalink to this headline">¶</a></h2>
+<h2>Protocol Version (ATS as client)<a class="headerlink" href="#protocol-version-ats-as-client" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">proxy</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">ssl</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">SSLv2</span>
 <span class="n">proxy</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">ssl</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">SSLv3</span>
 <span class="n">proxy</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">ssl</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">TLSv1</span>
@@ -71,26 +71,26 @@
 <p>Set <code class="docutils literal"><span class="pre">proxy.config.ssl.SSLv2</span></code> to <code class="docutils literal"><span class="pre">0</span></code>, ..., <code class="docutils literal"><span class="pre">proxy.config.ssl.TLSv1</span></code> to <code class="docutils literal"><span class="pre">1</span></code>, ...: Test if ATS does not use SSL version 2, ..., uses TLS version 1, ..., when it handshakes with origin server.</p>
 </div>
 <div class="section" id="cipher-suite">
-<h2>## Cipher Suite<a class="headerlink" href="#cipher-suite" title="Permalink to this headline">¶</a></h2>
+<h2>Cipher Suite<a class="headerlink" href="#cipher-suite" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">proxy</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">ssl</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">cipher_suite</span>
 </pre></div>
 </div>
 <p>Set <code class="docutils literal"><span class="pre">proxy.config.ssl.server.cipher_suite</span></code> to <code class="docutils literal"><span class="pre">ECDHE-RSA-AES256-GCM-SHA384:...</span></code>: Test if ATS is using a cipher suite in the list when it handshakes with client.</p>
 </div>
 <div class="section" id="cipher-suite-ats-as-client">
-<h2>## Cipher Suite (ATS as client)<a class="headerlink" href="#cipher-suite-ats-as-client" title="Permalink to this headline">¶</a></h2>
+<h2>Cipher Suite (ATS as client)<a class="headerlink" href="#cipher-suite-ats-as-client" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">proxy</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">ssl</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">cipher_suite</span>
 </pre></div>
 </div>
 <p>Set <code class="docutils literal"><span class="pre">proxy.config.ssl.client.cipher_suite</span></code> to <code class="docutils literal"><span class="pre">ECDHE-RSA-AES256-GCM-SHA384:...</span></code>: Test if ATS is using a cipher suite in the list when it handshakes with origin server.</p>
 </div>
 <div class="section" id="multicert-loading">
-<h2>## Multicert Loading<a class="headerlink" href="#multicert-loading" title="Permalink to this headline">¶</a></h2>
+<h2>Multicert Loading<a class="headerlink" href="#multicert-loading" title="Permalink to this headline">¶</a></h2>
 <p>The ssl_multicert.config file lets you configure Traffic Server to use multiple SSL server certificates to terminate the SSL sessions. If you have a Traffic Server system with more than one IP address assigned to it, then you can assign a different SSL certificate to be served when a client requests a particular IP address or host name.</p>
 <p><strong>Rewrite with new_tsqa</strong>: <a class="reference external" href="https://github.com/apache/trafficserver/blob/master/ci/tsqa/test-multicert-loading">test-multicert-loading</a></p>
 </div>
 <div class="section" id="privilege-elevation">
-<h2>## Privilege Elevation<a class="headerlink" href="#privilege-elevation" title="Permalink to this headline">¶</a></h2>
+<h2>Privilege Elevation<a class="headerlink" href="#privilege-elevation" title="Permalink to this headline">¶</a></h2>
 <p>Set <code class="docutils literal"><span class="pre">records.config</span></code>:</p>
 <div class="highlight-python"><div class="highlight"><pre>CONFIG proxy.config.ssl.cert.load_elevated INT 1
 CONFIG proxy.config.plugin.load_elevated INT 1
@@ -193,11 +193,11 @@ CONFIG proxy.config.ssl.client.CA.cert.path STRING etc/trafficserver
 <li><a class="reference internal" href="#">SSL</a><ul>
 <li><a class="reference internal" href="#certificate-configurations">Certificate Configurations</a></li>
 <li><a class="reference internal" href="#protocol-version">Protocol Version</a></li>
-<li><a class="reference internal" href="#protocol-version-ats-as-client">## Protocol Version (ATS as client)</a></li>
-<li><a class="reference internal" href="#cipher-suite">## Cipher Suite</a></li>
-<li><a class="reference internal" href="#cipher-suite-ats-as-client">## Cipher Suite (ATS as client)</a></li>
-<li><a class="reference internal" href="#multicert-loading">## Multicert Loading</a></li>
-<li><a class="reference internal" href="#privilege-elevation">## Privilege Elevation</a></li>
+<li><a class="reference internal" href="#protocol-version-ats-as-client">Protocol Version (ATS as client)</a></li>
+<li><a class="reference internal" href="#cipher-suite">Cipher Suite</a></li>
+<li><a class="reference internal" href="#cipher-suite-ats-as-client">Cipher Suite (ATS as client)</a></li>
+<li><a class="reference internal" href="#multicert-loading">Multicert Loading</a></li>
+<li><a class="reference internal" href="#privilege-elevation">Privilege Elevation</a></li>
 <li><a class="reference internal" href="#verify-client-s-certificate">Verify Client&#8217;s Certificate</a></li>
 <li><a class="reference internal" href="#verify-origin-server-s-certificate">Verify Origin Server&#8217;s Certificate</a></li>
 <li><a class="reference internal" href="#verified-by-origin-server">Verified by Origin Server</a></li>

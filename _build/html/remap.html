@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Remap &mdash; ATS Test 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="ATS Test 0.1 documentation" href="index.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">ATS Test 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="remap">
+<h1>Remap<a class="headerlink" href="#remap" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="type">
+<h2>Type<a class="headerlink" href="#type" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic">
+<li><p class="first">map</p>
+<p>Translates an incoming request URL to the appropriate origin server URL.</p>
+<p>Test if <code class="docutils literal"><span class="pre">map</span></code> rule works.</p>
+</li>
+<li><p class="first">map_with_recv_port</p>
+<p>Exactly like <code class="docutils literal"><span class="pre">map</span></code> except that <code class="docutils literal"><span class="pre">map_with_recv_port</span></code> uses the port at which the request was received to perform the mapping instead of the port present in the request.</p>
+<p>Test if <code class="docutils literal"><span class="pre">map_with_recv_port</span></code> rule works.</p>
+</li>
+<li><p class="first">map_with_referer</p>
+<p>Extended version of <code class="docutils literal"><span class="pre">map</span></code>, which can be used to activate “deep linking protection”, where target URLs are only accessible when the Referer header is set to a URL that is allowed to link to the target.</p>
+<p>Test if <code class="docutils literal"><span class="pre">map_with_referer</span></code> rule works.</p>
+</li>
+<li><p class="first">reverse_map</p>
+<p>Translates the URL in origin server redirect responses to point to ATS.</p>
+<p>Test if <code class="docutils literal"><span class="pre">reverse_map</span></code> rule works.</p>
+</li>
+<li><p class="first">redirect</p>
+<p>Redirects HTTP requests permanently without having to contact the origin server. Permanent redirects notify the browser of the URL change (by returning an HTTP status code 301) so that the browser can update bookmarks.</p>
+<p>Test if <code class="docutils literal"><span class="pre">redirect</span></code> rule works.</p>
+</li>
+<li><p class="first">redirect_temporary</p>
+<p>Redirects HTTP requests temporarily without having to contact the origin server. Temporary redirects notify the browser of the URL change for the current request only (by returning an HTTP status code 307).</p>
+<p>Test if <code class="docutils literal"><span class="pre">redirect_temporary</span></code> rule works.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="precedence">
+<h2>Precedence<a class="headerlink" href="#precedence" title="Permalink to this headline">¶</a></h2>
+<p>Remap rules are not processed top-down, but based on an internal priority. Once these rules are executed we pick the first match based on configuration file parse order.</p>
+<ol class="arabic simple">
+<li><code class="docutils literal"><span class="pre">map_with_recv_port</span></code> and <code class="docutils literal"><span class="pre">regex_map_with_recv_port</span></code></li>
+<li><code class="docutils literal"><span class="pre">map</span> <span class="pre">and</span> <span class="pre">regex_map</span></code> and <code class="docutils literal"><span class="pre">reverse_map</span></code></li>
+<li><code class="docutils literal"><span class="pre">redirect</span></code> and <code class="docutils literal"><span class="pre">redirect_temporary</span></code></li>
+<li><code class="docutils literal"><span class="pre">regex_redirect</span></code> and <code class="docutils literal"><span class="pre">regex_redirect_temporary</span></code></li>
+</ol>
+<p>Test if it follows the above priority.</p>
+<p>Test if it follows the parse order within same priority.</p>
+</div>
+<div class="section" id="match-all">
+<h2>Match-All<a class="headerlink" href="#match-all" title="Permalink to this headline">¶</a></h2>
+<p>A map rule with a single <code class="docutils literal"><span class="pre">/</span></code> acts as a wildcard, it will match any request. This should be use with care, and certainly only once at the end of the remap.config file. E.g.</p>
+<div class="highlight-python"><div class="highlight"><pre>map / http://all.example.com
+</pre></div>
+</div>
+<p>Test if <code class="docutils literal"><span class="pre">Match-All</span></code> rule works.</p>
+</div>
+<div class="section" id="regex">
+<h2>Regex<a class="headerlink" href="#regex" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic">
+<li><p class="first">regex_map</p>
+<p>The <code class="docutils literal"><span class="pre">regex</span></code> qualifier can also be used for <code class="docutils literal"><span class="pre">map</span></code>. When present, <code class="docutils literal"><span class="pre">map</span></code> mappings are checked first. If there is a match, then it is chosen without evaluating the “regular expression” mapping rules.</p>
+<p>Test if <cite>regex_map</cite> rule works.</p>
+</li>
+<li><p class="first">map_with_recv_port</p>
+<p>The <code class="docutils literal"><span class="pre">regex</span></code> qualifier can also be used for <code class="docutils literal"><span class="pre">map_with_recv_port</span></code>. When present, <code class="docutils literal"><span class="pre">map_with_recv_port</span></code> mappings are checked first. If there is a match, then it is chosen without evaluating the “regular expression” mapping rules.</p>
+<p>Test if <code class="docutils literal"><span class="pre">regex_map_with_recv_port</span></code> rule works.</p>
+</li>
+<li><p class="first">redirect</p>
+<p>The <code class="docutils literal"><span class="pre">regex</span></code> qualifier can also be used for <code class="docutils literal"><span class="pre">redirect</span></code>. When present, <code class="docutils literal"><span class="pre">redirect</span></code> mappings are checked first. If there is a match, then it is chosen without evaluating the “regular expression” mapping rules.</p>
+<p>Test if <cite>regex_redirect</cite> rule works.</p>
+</li>
+<li><p class="first">redirect_temporary</p>
+<p>The <code class="docutils literal"><span class="pre">regex</span></code> qualifier can also be used for <code class="docutils literal"><span class="pre">redirect_temporary</span></code>. When present, <code class="docutils literal"><span class="pre">redirect_temporary</span></code> mappings are checked first. If there is a match, then it is chosen without evaluating the “regular expression” mapping rules.</p>
+<p>Test if <code class="docutils literal"><span class="pre">regex_redirect_temporary</span></code> rule works.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="plugin-chaining">
+<h2>Plugin Chaining<a class="headerlink" href="#plugin-chaining" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="acl-filters">
+<h2>ACL Filters<a class="headerlink" href="#acl-filters" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="named-filters">
+<h2>Named Filters<a class="headerlink" href="#named-filters" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="including-additional-remap-files">
+<h2>Including Additional Remap Files<a class="headerlink" href="#including-additional-remap-files" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Remap</a><ul>
+<li><a class="reference internal" href="#type">Type</a></li>
+<li><a class="reference internal" href="#precedence">Precedence</a></li>
+<li><a class="reference internal" href="#match-all">Match-All</a></li>
+<li><a class="reference internal" href="#regex">Regex</a></li>
+<li><a class="reference internal" href="#plugin-chaining">Plugin Chaining</a></li>
+<li><a class="reference internal" href="#acl-filters">ACL Filters</a></li>
+<li><a class="reference internal" href="#named-filters">Named Filters</a></li>
+<li><a class="reference internal" href="#including-additional-remap-files">Including Additional Remap Files</a></li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/remap.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">ATS Test 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Feifei Cai.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Cache &mdash; ATS Test 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="ATS Test 0.1 documentation" href="index.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">ATS Test 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="cache">
+<h1>Cache<a class="headerlink" href="#cache" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="cache-control">
+<h2>Cache Control<a class="headerlink" href="#cache-control" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic">
+<li><p class="first">Cache</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">proxy</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">http</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">http</span>
+</pre></div>
+</div>
+<p>Set to <code class="docutils literal"><span class="pre">0</span></code>: Test if ATS disables caching HTTP requests.</p>
+<p>Set to <code class="docutils literal"><span class="pre">1</span></code>: Test if ATS enables caching HTTP requests.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="caching-http-objects">
+<h2>Caching HTTP Objects<a class="headerlink" href="#caching-http-objects" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic">
+<li><p class="first">Client Directives</p>
+<p>By default, ATS does not cache objects with the following request headers:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">Authorization</span></code></li>
+<li><code class="docutils literal"><span class="pre">Cache-Control:</span> <span class="pre">no-store</span></code></li>
+<li><code class="docutils literal"><span class="pre">Cache-Control:</span> <span class="pre">no-cache</span></code></li>
+<li><code class="docutils literal"><span class="pre">Cookie</span></code> (for text objects)</li>
+</ul>
+<p>We need to test the following scenarios:</p>
+<ul class="simple">
+<li>Test if ATS does not cache objects with the above request headers.</li>
+<li>Test if ATS can ignore client no-cache headers.</li>
+<li>Test if ATS caches cookied content.</li>
+</ul>
+</li>
+<li><p class="first">Origin Server Directives</p>
+</li>
+</ol>
+<p>By default, Traffic Server does not cache objects with the following response headers:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">Cache-Control:</span> <span class="pre">no-store</span></code></li>
+<li><code class="docutils literal"><span class="pre">Cache-Control:</span> <span class="pre">private</span></code></li>
+<li><code class="docutils literal"><span class="pre">WWW-Authenticate</span></code></li>
+<li><code class="docutils literal"><span class="pre">Set-Cookie</span></code></li>
+<li><code class="docutils literal"><span class="pre">Cache-Control:</span> <span class="pre">no-cache</span></code></li>
+<li><code class="docutils literal"><span class="pre">Expires</span></code></li>
+</ul>
+<p>We need to test the following scenarios:</p>
+<ul class="simple">
+<li>Test if ATS does not cache objects with the above response headers.</li>
+<li>Test if ATS can ignore <code class="docutils literal"><span class="pre">WWW-Authenticate</span></code> headers.</li>
+<li>Test if ATS can ignore server <code class="docutils literal"><span class="pre">no-cache</span></code> headers.</li>
+</ul>
+</div>
+<div class="section" id="heuristic-expiration">
+<h2>Heuristic Expiration<a class="headerlink" href="#heuristic-expiration" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="dynamic-content-negotiation">
+<h2>Dynamic Content Negotiation<a class="headerlink" href="#dynamic-content-negotiation" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="negative-response-caching">
+<h2>Negative Response Caching<a class="headerlink" href="#negative-response-caching" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="negative-revalidate">
+<h2>Negative Revalidate<a class="headerlink" href="#negative-revalidate" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="push">
+<h2>PUSH<a class="headerlink" href="#push" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div>proxy.config.http.push_method_enabled</div></blockquote>
+<p>Set to <code class="docutils literal"><span class="pre">1</span></code>: Test if ATS allows to deliver content directly to the cache without a user request via <code class="docutils literal"><span class="pre">PUSH</span></code> method.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Cache</a><ul>
+<li><a class="reference internal" href="#cache-control">Cache Control</a></li>
+<li><a class="reference internal" href="#caching-http-objects">Caching HTTP Objects</a></li>
+<li><a class="reference internal" href="#heuristic-expiration">Heuristic Expiration</a></li>
+<li><a class="reference internal" href="#dynamic-content-negotiation">Dynamic Content Negotiation</a></li>
+<li><a class="reference internal" href="#negative-response-caching">Negative Response Caching</a></li>
+<li><a class="reference internal" href="#negative-revalidate">Negative Revalidate</a></li>
+<li><a class="reference internal" href="#push">PUSH</a></li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/cache.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">ATS Test 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Feifei Cai.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
+    </div>
+  </body>
+</html>
