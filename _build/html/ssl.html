@@ -1,0 +1,250 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>SSL &mdash; ATS Test 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="ATS Test 0.1 documentation" href="index.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">ATS Test 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="ssl">
+<h1>SSL<a class="headerlink" href="#ssl" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="certificate-configurations">
+<h2>Certificate Configurations<a class="headerlink" href="#certificate-configurations" title="Permalink to this headline">¶</a></h2>
+<p>Configure server certificate and private key file.</p>
+<p>Test if SSL connection works.</p>
+</div>
+<div class="section" id="protocol-version">
+<h2>Protocol Version<a class="headerlink" href="#protocol-version" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">proxy</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">ssl</span><span class="o">.</span><span class="n">SSLv2</span>
+<span class="n">proxy</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">ssl</span><span class="o">.</span><span class="n">SSLv3</span>
+<span class="n">proxy</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">ssl</span><span class="o">.</span><span class="n">TLSv1</span>
+<span class="n">proxy</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">ssl</span><span class="o">.</span><span class="n">TLSv1_1</span>
+<span class="n">proxy</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">ssl</span><span class="o">.</span><span class="n">TLSv1_2</span>
+</pre></div>
+</div>
+<p>Set <code class="docutils literal"><span class="pre">proxy.config.ssl.SSLv2</span></code> to <code class="docutils literal"><span class="pre">0</span></code>, ..., <code class="docutils literal"><span class="pre">proxy.config.ssl.TLSv1</span></code> to <code class="docutils literal"><span class="pre">1</span></code>, ...: Test if ATS does not use SSL version 2, ..., uses TLS version 1, ..., when it handshakes with client.</p>
+</div>
+<div class="section" id="protocol-version-ats-as-client">
+<h2>## Protocol Version (ATS as client)<a class="headerlink" href="#protocol-version-ats-as-client" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">proxy</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">ssl</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">SSLv2</span>
+<span class="n">proxy</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">ssl</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">SSLv3</span>
+<span class="n">proxy</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">ssl</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">TLSv1</span>
+<span class="n">proxy</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">ssl</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">TLSv1_1</span>
+<span class="n">proxy</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">ssl</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">TLSv1_2</span>
+</pre></div>
+</div>
+<p>Set <code class="docutils literal"><span class="pre">proxy.config.ssl.SSLv2</span></code> to <code class="docutils literal"><span class="pre">0</span></code>, ..., <code class="docutils literal"><span class="pre">proxy.config.ssl.TLSv1</span></code> to <code class="docutils literal"><span class="pre">1</span></code>, ...: Test if ATS does not use SSL version 2, ..., uses TLS version 1, ..., when it handshakes with origin server.</p>
+</div>
+<div class="section" id="cipher-suite">
+<h2>## Cipher Suite<a class="headerlink" href="#cipher-suite" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">proxy</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">ssl</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">cipher_suite</span>
+</pre></div>
+</div>
+<p>Set <code class="docutils literal"><span class="pre">proxy.config.ssl.server.cipher_suite</span></code> to <code class="docutils literal"><span class="pre">ECDHE-RSA-AES256-GCM-SHA384:...</span></code>: Test if ATS is using a cipher suite in the list when it handshakes with client.</p>
+</div>
+<div class="section" id="cipher-suite-ats-as-client">
+<h2>## Cipher Suite (ATS as client)<a class="headerlink" href="#cipher-suite-ats-as-client" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">proxy</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">ssl</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">cipher_suite</span>
+</pre></div>
+</div>
+<p>Set <code class="docutils literal"><span class="pre">proxy.config.ssl.client.cipher_suite</span></code> to <code class="docutils literal"><span class="pre">ECDHE-RSA-AES256-GCM-SHA384:...</span></code>: Test if ATS is using a cipher suite in the list when it handshakes with origin server.</p>
+</div>
+<div class="section" id="multicert-loading">
+<h2>## Multicert Loading<a class="headerlink" href="#multicert-loading" title="Permalink to this headline">¶</a></h2>
+<p>The ssl_multicert.config file lets you configure Traffic Server to use multiple SSL server certificates to terminate the SSL sessions. If you have a Traffic Server system with more than one IP address assigned to it, then you can assign a different SSL certificate to be served when a client requests a particular IP address or host name.</p>
+<p><strong>Rewrite with new_tsqa</strong>: <a class="reference external" href="https://github.com/apache/trafficserver/blob/master/ci/tsqa/test-multicert-loading">test-multicert-loading</a></p>
+</div>
+<div class="section" id="privilege-elevation">
+<h2>## Privilege Elevation<a class="headerlink" href="#privilege-elevation" title="Permalink to this headline">¶</a></h2>
+<p>Set <code class="docutils literal"><span class="pre">records.config</span></code>:</p>
+<div class="highlight-python"><div class="highlight"><pre>CONFIG proxy.config.ssl.cert.load_elevated INT 1
+CONFIG proxy.config.plugin.load_elevated INT 1
+
+CONFIG proxy.config.diags.debug.enabled INT 1
+CONFIG proxy.config.diags.debug.tags STRING &#39;privileges&#39;
+</pre></div>
+</div>
+<p><strong>Rewrite with new_tsqa</strong>: <a class="reference external" href="https://github.com/apache/trafficserver/blob/master/ci/tsqa/test-privilege-elevation">test-privilege-elevation</a></p>
+</div>
+<div class="section" id="verify-client-s-certificate">
+<h2>Verify Client&#8217;s Certificate<a class="headerlink" href="#verify-client-s-certificate" title="Permalink to this headline">¶</a></h2>
+<p>We can authenticate client during SSL handshake, and client is required to provide a certificate.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">proxy</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">ssl</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">certification_level</span>
+</pre></div>
+</div>
+<p>Set <code class="docutils literal"><span class="pre">records.config</span></code>:</p>
+<p>This is a test certificate signed by a test CA, which is not in system PKI or browser. So, we need to specify the CA certificate:</p>
+<div class="highlight-python"><div class="highlight"><pre># 1: optional 2: required
+CONFIG proxy.config.ssl.client.certification_level INT 2
+
+# specify CA file name and path, who signed client&#39;s certificate
+CONFIG proxy.config.ssl.CA.cert.filename STRING ca.crt
+CONFIG proxy.config.ssl.CA.cert.path STRING etc/trafficserver
+</pre></div>
+</div>
+<p>Test if ATS verifies client&#8217;s certificate.</p>
+</div>
+<div class="section" id="verify-origin-server-s-certificate">
+<h2>Verify Origin Server&#8217;s Certificate<a class="headerlink" href="#verify-origin-server-s-certificate" title="Permalink to this headline">¶</a></h2>
+<p>We can configure it to verify the origin server certificate with the Certificate Authority (CA).</p>
+<p><strong>Notice</strong>: By default, ATS does not verify the origin server!</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">proxy</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">ssl</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">verify</span><span class="o">.</span><span class="n">server</span>
+</pre></div>
+</div>
+<p>Set <cite>records.config</cite>:</p>
+<div class="highlight-python"><div class="highlight"><pre>CONFIG proxy.config.ssl.client.verify.server INT 1
+
+# specify CA file name and path, who signed origin server&#39;s certificate
+CONFIG proxy.config.ssl.client.CA.cert.filename STRING ca.crt
+CONFIG proxy.config.ssl.client.CA.cert.path STRING etc/trafficserver
+</pre></div>
+</div>
+<p>Test if ATS verifies origin server&#8217;s certificate.</p>
+</div>
+<div class="section" id="verified-by-origin-server">
+<h2>Verified by Origin Server<a class="headerlink" href="#verified-by-origin-server" title="Permalink to this headline">¶</a></h2>
+<p>Send origin server certificate for verification. Here ATS is SSL client, and origin server requires to verify ATS.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">proxy</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">ssl</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">cert</span><span class="o">.</span><span class="n">filename</span>
+<span class="n">proxy</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">ssl</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">cert</span><span class="o">.</span><span class="n">path</span>
+<span class="n">proxy</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">ssl</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">private_key</span><span class="o">.</span><span class="n">filename</span>
+<span class="n">proxy</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">ssl</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">private_key</span><span class="o">.</span><span class="n">path</span>
+</pre></div>
+</div>
+<p>Test if ATS passed origin server&#8217;s verification.</p>
+</div>
+<div class="section" id="sni">
+<h2>SNI<a class="headerlink" href="#sni" title="Permalink to this headline">¶</a></h2>
+<p><strong>Done</strong>: <a class="reference external" href="https://github.com/apache/trafficserver/blob/master/ci/new_tsqa/tests/test_https.py">test_https</a></p>
+</div>
+<div class="section" id="session-reuse">
+<h2>Session Reuse<a class="headerlink" href="#session-reuse" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Session Ticket</li>
+<li>Session ID</li>
+</ol>
+</div>
+<div class="section" id="ocsp-stapling">
+<h2>OCSP Stapling<a class="headerlink" href="#ocsp-stapling" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">proxy</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">ssl</span><span class="o">.</span><span class="n">ocsp</span><span class="o">.</span><span class="n">enabled</span>
+</pre></div>
+</div>
+<p>By default, ATS does not enable OCSP Stapling.</p>
+<ol class="arabic">
+<li><p class="first">Good OCSP response.</p>
+<p>Generate a test certificate with OCSP extensions; start an OCSP server. Test if ATS staples the <strong>good</strong> OCSP response and sends it to client along with certificate in SSL handshake.</p>
+</li>
+<li><p class="first">Revoked OCSP response.</p>
+<p>Generate a test certificate with OCSP extensions, then revoke it; start an OCSP server. Test if ATS staples the <strong>revoked</strong> OCSP response and sends it to client along with certificate in SSL handshake.</p>
+</li>
+<li><p class="first">Unknown OCSP response.</p>
+<p>Generate a test certificate with OCSP extensions, then remove the entry in test CA&#8217;s database; start an OCSP server. Test if ATS staples the <strong>unknown</strong> OCSP response and sends it to client along with certificate in SSL handshake.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="dual-certificate-ecdsa-rsa">
+<h2>Dual Certificate (ECDSA + RSA)<a class="headerlink" href="#dual-certificate-ecdsa-rsa" title="Permalink to this headline">¶</a></h2>
+<p>...</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">SSL</a><ul>
+<li><a class="reference internal" href="#certificate-configurations">Certificate Configurations</a></li>
+<li><a class="reference internal" href="#protocol-version">Protocol Version</a></li>
+<li><a class="reference internal" href="#protocol-version-ats-as-client">## Protocol Version (ATS as client)</a></li>
+<li><a class="reference internal" href="#cipher-suite">## Cipher Suite</a></li>
+<li><a class="reference internal" href="#cipher-suite-ats-as-client">## Cipher Suite (ATS as client)</a></li>
+<li><a class="reference internal" href="#multicert-loading">## Multicert Loading</a></li>
+<li><a class="reference internal" href="#privilege-elevation">## Privilege Elevation</a></li>
+<li><a class="reference internal" href="#verify-client-s-certificate">Verify Client&#8217;s Certificate</a></li>
+<li><a class="reference internal" href="#verify-origin-server-s-certificate">Verify Origin Server&#8217;s Certificate</a></li>
+<li><a class="reference internal" href="#verified-by-origin-server">Verified by Origin Server</a></li>
+<li><a class="reference internal" href="#sni">SNI</a></li>
+<li><a class="reference internal" href="#session-reuse">Session Reuse</a></li>
+<li><a class="reference internal" href="#ocsp-stapling">OCSP Stapling</a></li>
+<li><a class="reference internal" href="#dual-certificate-ecdsa-rsa">Dual Certificate (ECDSA + RSA)</a></li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/ssl.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">ATS Test 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Feifei Cai.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
+    </div>
+  </body>
+</html>
