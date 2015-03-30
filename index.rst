@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 
 Welcome to ATS Test's documentation!!!
-====================================
+======================================
 
 Contents:
 
