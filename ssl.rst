@@ -21,8 +21,8 @@ Protocol Version
 
 Set ``proxy.config.ssl.SSLv2`` to ``0``, ..., ``proxy.config.ssl.TLSv1`` to ``1``, ...: Test if ATS does not use SSL version 2, ..., uses TLS version 1, ..., when it handshakes with client.
 
-## Protocol Version (ATS as client)
-===================================
+Protocol Version (ATS as client)
+================================
 
 ::
 
@@ -35,8 +35,8 @@ Set ``proxy.config.ssl.SSLv2`` to ``0``, ..., ``proxy.config.ssl.TLSv1`` to ``1`
 Set ``proxy.config.ssl.SSLv2`` to ``0``, ..., ``proxy.config.ssl.TLSv1`` to ``1``, ...: Test if ATS does not use SSL version 2, ..., uses TLS version 1, ..., when it handshakes with origin server.
 
 
-## Cipher Suite
-===============
+Cipher Suite
+============
 
 ::
 
@@ -44,8 +44,8 @@ Set ``proxy.config.ssl.SSLv2`` to ``0``, ..., ``proxy.config.ssl.TLSv1`` to ``1`
     
 Set ``proxy.config.ssl.server.cipher_suite`` to ``ECDHE-RSA-AES256-GCM-SHA384:...``: Test if ATS is using a cipher suite in the list when it handshakes with client.
 
-## Cipher Suite (ATS as client)
-===============================
+Cipher Suite (ATS as client)
+============================
 
 ::
 
@@ -53,15 +53,15 @@ Set ``proxy.config.ssl.server.cipher_suite`` to ``ECDHE-RSA-AES256-GCM-SHA384:..
     
 Set ``proxy.config.ssl.client.cipher_suite`` to ``ECDHE-RSA-AES256-GCM-SHA384:...``: Test if ATS is using a cipher suite in the list when it handshakes with origin server.
 
-## Multicert Loading
-====================
+Multicert Loading
+=================
 
 The ssl_multicert.config file lets you configure Traffic Server to use multiple SSL server certificates to terminate the SSL sessions. If you have a Traffic Server system with more than one IP address assigned to it, then you can assign a different SSL certificate to be served when a client requests a particular IP address or host name.
 
 **Rewrite with new_tsqa**: `test-multicert-loading <https://github.com/apache/trafficserver/blob/master/ci/tsqa/test-multicert-loading>`_
 
-## Privilege Elevation
-======================
+Privilege Elevation
+===================
 
 Set ``records.config``: ::
 
