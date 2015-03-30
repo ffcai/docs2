@@ -1,24 +1,24 @@
+Others
+******
+
 LOG
-***
+===
 
-Configuration
-=============
+#. Configuration
 
-**Rewrite with new_tsqa**: `test-log-configuration <https://github.com/apache/trafficserver/blob/master/ci/tsqa/test-log-configuration>`_
+   **Rewrite with new_tsqa**: `test-log-configuration <https://github.com/apache/trafficserver/blob/master/ci/tsqa/test-log-configuration>`_
 
-Refcounting
-===========
+#. Refcounting
 
-**Rewrite with new_tsqa**: `test-log-refcounting <https://github.com/apache/trafficserver/blob/master/ci/tsqa/test-log-refcounting>`_
+   **Rewrite with new_tsqa**: `test-log-refcounting <https://github.com/apache/trafficserver/blob/master/ci/tsqa/test-log-refcounting>`_
 
-Heartbeat
-=========
+#. Heartbeat
 
-::
+   ::
 
     proxy.config.http.record_heartbeat
 
-Set to ``1``: Test if ATS enables ``traffic_cop``'s heartbeat logging.
+   Set to ``1``: Test if ATS enables ``traffic_cop``'s heartbeat logging.
 
 Traffic Line
 ============
