@@ -8,16 +8,16 @@ Cache Control
 
     proxy.config.http.cache.http
 
-   Set to ``0``: Test if ATS disables caching HTTP requests.
+   Set to ``0``: Test if Traffic Server disables caching HTTP requests.
 	
-   Set to ``1``: Test if ATS enables caching HTTP requests.
+   Set to ``1``: Test if Traffic Server enables caching HTTP requests.
 
 Caching HTTP Objects
 ====================
 
 #. Client Directives
 
-   By default, ATS does not cache objects with the following request headers:
+   By default, Traffic Server does not cache objects with the following request headers:
 
    * ``Authorization``
    * ``Cache-Control: no-store``
@@ -26,9 +26,9 @@ Caching HTTP Objects
    
    We need to test the following scenarios:
 
-   * Test if ATS does not cache objects with the above request headers.
-   * Test if ATS can ignore client no-cache headers.
-   * Test if ATS caches cookied content.
+   * Test if Traffic Server does not cache objects with the above request headers.
+   * Test if Traffic Server can ignore client no-cache headers.
+   * Test if Traffic Server caches cookied content.
 
 #. Origin Server Directives
 
@@ -43,9 +43,9 @@ By default, Traffic Server does not cache objects with the following response he
 
 We need to test the following scenarios:
 
-* Test if ATS does not cache objects with the above response headers.
-* Test if ATS can ignore ``WWW-Authenticate`` headers.
-* Test if ATS can ignore server ``no-cache`` headers.
+* Test if Traffic Server does not cache objects with the above response headers.
+* Test if Traffic Server can ignore ``WWW-Authenticate`` headers.
+* Test if Traffic Server can ignore server ``no-cache`` headers.
 
 Heuristic Expiration
 ====================
@@ -115,4 +115,4 @@ PUSH
 
 	proxy.config.http.push_method_enabled
 
-Set to ``1``: Test if ATS allows to deliver content directly to the cache without a user request via ``PUSH`` method.
+Set to ``1``: Test if Traffic Server allows to deliver content directly to the cache without a user request via ``PUSH`` method.
