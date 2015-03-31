@@ -18,7 +18,7 @@ LOG
 
     proxy.config.http.record_heartbeat
 
-   Set to ``1``: Test if ATS enables ``traffic_cop``'s heartbeat logging.
+   Set to ``1``: Test if Traffic Server enables ``traffic_cop``'s heartbeat logging.
 
 Traffic Line
 ============
