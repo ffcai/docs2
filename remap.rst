@@ -1,7 +1,7 @@
 Remap
 *****
 
-Map Types
+Map Type
 =========
 
 #. map
@@ -63,7 +63,7 @@ A map rule with a single ``/`` acts as a wildcard, it will match any request. Th
 
 Test if ``Match-All`` rule works.
 
-Regex Map Types
+Regex Map Type
 ===============
 
 #. regex_map
