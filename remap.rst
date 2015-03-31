@@ -9,6 +9,8 @@ Map Type
    Translates an incoming request URL to the appropriate origin server URL.
 
    Test if ``map`` rule works.
+
+   Done: `test_remap <https://github.com/apache/trafficserver/blob/master/ci/new_tsqa/tests/test_remap.py>`_
 		
 #. map_with_recv_port
 
