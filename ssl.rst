@@ -127,7 +127,7 @@ Test if Traffic Server passed origin server's verification.
 SNI
 ===
 
-**Done**: `test_https <https://github.com/apache/trafficserver/blob/master/ci/new_tsqa/tests/test_https.py>`_
+Done: `test_https <https://github.com/apache/trafficserver/blob/master/ci/new_tsqa/tests/test_https.py>`_
 
 Session Reuse
 =============
