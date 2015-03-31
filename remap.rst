@@ -1,8 +1,8 @@
 Remap
 *****
 
-Type
-====
+Map Types
+=========
 
 #. map
 
@@ -63,8 +63,8 @@ A map rule with a single ``/`` acts as a wildcard, it will match any request. Th
 
 Test if ``Match-All`` rule works.
 
-Regex
-=====
+Regex Map Types
+===============
 
 #. regex_map
 
@@ -93,14 +93,19 @@ Regex
 Plugin Chaining
 ===============
 
+Test if plugins can be configured to be evaluated in a specific order, passing the results from one in to the next.
 
 ACL Filters
 ===========
 
+Test if ACL filters work.
 
 Named Filters
 =============
 
+Test if named filters work.
 
 Including Additional Remap Files
 ================================
+
+Test if ``.include`` directive works.
