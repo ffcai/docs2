@@ -1,7 +1,7 @@
 Others
 ******
 
-LOG
+Log
 ===
 
 #. Configuration
