@@ -19,10 +19,10 @@ Protocol Version
     proxy.config.ssl.TLSv1_1
     proxy.config.ssl.TLSv1_2
 
-Set ``proxy.config.ssl.SSLv2`` to ``0``, ..., ``proxy.config.ssl.TLSv1`` to ``1``, ...: Test if ATS does not use SSL version 2, ..., uses TLS version 1, ..., when it handshakes with client.
+Set ``proxy.config.ssl.SSLv2`` to ``0``, ..., ``proxy.config.ssl.TLSv1`` to ``1``, ...: Test if Traffic Server does not use SSL version 2, ..., uses TLS version 1, ..., when it handshakes with client.
 
-Protocol Version (ATS as client)
-================================
+Protocol Version (Traffic Server as client)
+===========================================
 
 ::
 
@@ -32,7 +32,7 @@ Protocol Version (ATS as client)
     proxy.config.ssl.client.TLSv1_1
     proxy.config.ssl.client.TLSv1_2
 
-Set ``proxy.config.ssl.SSLv2`` to ``0``, ..., ``proxy.config.ssl.TLSv1`` to ``1``, ...: Test if ATS does not use SSL version 2, ..., uses TLS version 1, ..., when it handshakes with origin server.
+Set ``proxy.config.ssl.SSLv2`` to ``0``, ..., ``proxy.config.ssl.TLSv1`` to ``1``, ...: Test if Traffic Server does not use SSL version 2, ..., uses TLS version 1, ..., when it handshakes with origin server.
 
 
 Cipher Suite
@@ -42,16 +42,16 @@ Cipher Suite
 
     proxy.config.ssl.server.cipher_suite
     
-Set ``proxy.config.ssl.server.cipher_suite`` to ``ECDHE-RSA-AES256-GCM-SHA384:...``: Test if ATS is using a cipher suite in the list when it handshakes with client.
+Set ``proxy.config.ssl.server.cipher_suite`` to ``ECDHE-RSA-AES256-GCM-SHA384:...``: Test if Traffic Server is using a cipher suite in the list when it handshakes with client.
 
-Cipher Suite (ATS as client)
-============================
+Cipher Suite (Traffic Server as client)
+=======================================
 
 ::
 
     proxy.config.ssl.client.cipher_suite
     
-Set ``proxy.config.ssl.client.cipher_suite`` to ``ECDHE-RSA-AES256-GCM-SHA384:...``: Test if ATS is using a cipher suite in the list when it handshakes with origin server.
+Set ``proxy.config.ssl.client.cipher_suite`` to ``ECDHE-RSA-AES256-GCM-SHA384:...``: Test if Traffic Server is using a cipher suite in the list when it handshakes with origin server.
 
 Multicert Loading
 =================
@@ -91,14 +91,14 @@ This is a test certificate signed by a test CA, which is not in system PKI or br
     CONFIG proxy.config.ssl.CA.cert.filename STRING ca.crt
     CONFIG proxy.config.ssl.CA.cert.path STRING etc/trafficserver
 
-Test if ATS verifies client's certificate.
+Test if Traffic Server verifies client's certificate.
 
 Verify Origin Server's Certificate
 ==================================
 
 We can configure it to verify the origin server certificate with the Certificate Authority (CA).
 
-**Notice**: By default, ATS does not verify the origin server! ::
+**Notice**: By default, Traffic Server does not verify the origin server! ::
 
     proxy.config.ssl.client.verify.server
 
@@ -110,19 +110,19 @@ Set `records.config`: ::
     CONFIG proxy.config.ssl.client.CA.cert.filename STRING ca.crt
     CONFIG proxy.config.ssl.client.CA.cert.path STRING etc/trafficserver
 
-Test if ATS verifies origin server's certificate.
+Test if Traffic Server verifies origin server's certificate.
 
 Verified by Origin Server
 =========================
 
-Send origin server certificate for verification. Here ATS is SSL client, and origin server requires to verify ATS. ::
+Send origin server certificate for verification. Here Traffic Server is SSL client, and origin server requires to verify Traffic Server. ::
 
     proxy.config.ssl.client.cert.filename
     proxy.config.ssl.client.cert.path
     proxy.config.ssl.client.private_key.filename
     proxy.config.ssl.client.private_key.path
     
-Test if ATS passed origin server's verification.
+Test if Traffic Server passed origin server's verification.
 
 SNI
 ===
@@ -143,19 +143,19 @@ OCSP Stapling
 
     proxy.config.ssl.ocsp.enabled
 
-By default, ATS does not enable OCSP Stapling.
+By default, Traffic Server does not enable OCSP Stapling.
 
 #. Good OCSP response.
 
-   Generate a test certificate with OCSP extensions; start an OCSP server. Test if ATS staples the **good** OCSP response and sends it to client along with certificate in SSL handshake.
+   Generate a test certificate with OCSP extensions; start an OCSP server. Test if Traffic Server staples the **good** OCSP response and sends it to client along with certificate in SSL handshake.
 
 #. Revoked OCSP response.
 
-   Generate a test certificate with OCSP extensions, then revoke it; start an OCSP server. Test if ATS staples the **revoked** OCSP response and sends it to client along with certificate in SSL handshake.
+   Generate a test certificate with OCSP extensions, then revoke it; start an OCSP server. Test if Traffic Server staples the **revoked** OCSP response and sends it to client along with certificate in SSL handshake.
 
 #. Unknown OCSP response.
 
-   Generate a test certificate with OCSP extensions, then remove the entry in test CA's database; start an OCSP server. Test if ATS staples the **unknown** OCSP response and sends it to client along with certificate in SSL handshake.
+   Generate a test certificate with OCSP extensions, then remove the entry in test CA's database; start an OCSP server. Test if Traffic Server staples the **unknown** OCSP response and sends it to client along with certificate in SSL handshake.
 
 Dual Certificate (ECDSA + RSA)
 ==============================
