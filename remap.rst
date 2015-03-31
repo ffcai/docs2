@@ -24,7 +24,7 @@ Map Types
 	
 #. reverse_map
 
-   Translates the URL in origin server redirect responses to point to ATS.
+   Translates the URL in origin server redirect responses to point to Traffic Server.
 
    Test if ``reverse_map`` rule works.
 	
