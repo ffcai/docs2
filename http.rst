@@ -28,7 +28,7 @@ Keep-alive
 	
    Set to ``0``: Test if Traffic Server opens new TCP connections for new POST requests.
 
-**Done**: `test_keepalive <https://github.com/apache/trafficserver/blob/master/ci/new_tsqa/tests/test_keepalive.py>`_, `test_keepalive2 <https://git.corp.yahoo.com/ffcai/ATSTestScenarios/blob/master/HTTP/test_keepalive2.py>`_
+Done: `test_keepalive <https://github.com/apache/trafficserver/blob/master/ci/new_tsqa/tests/test_keepalive.py>`_, `test_keepalive2 <https://git.corp.yahoo.com/ffcai/ATSTestScenarios/blob/master/HTTP/test_keepalive2.py>`_
 
 Connection Timeouts
 ===================
@@ -78,7 +78,7 @@ Connection Timeouts
 
    Set to ``0.x``: Test the proportion of total document size already transferred when a client aborts at which the proxy continues fetching the document from the origin server to get it into the cache (a background fill).
 
-**Done**: `test_timeouts <https://git.corp.yahoo.com/ffcai/ATSTestScenarios/blob/master/HTTP/test_timeouts.py>`_
+Done: `test_timeouts <https://git.corp.yahoo.com/ffcai/ATSTestScenarios/blob/master/HTTP/test_timeouts.py>`_
 
 Origin Server Connect Attempts
 ==============================
@@ -136,6 +136,8 @@ Origin Server Connect Attempts
     proxy.config.http.down_server.abort_threshold
 
    Set to ``N``: Test that, after a client abandons a request because an origin server was too slow in sending the response header, if Traffic Server marks that origin server as unavailable after ``N`` seconds.
+
+Done: `test_connect_attempts <https://github.com/apache/trafficserver/blob/master/ci/new_tsqa/tests/test_connect_attempts.py>`_
 
 100 Continue Response
 =====================
@@ -271,6 +273,8 @@ Chunked Response
     proxy.config.http.chunking_enabled
 
 Set to ``0`` - ``3``: Test if Traffic Server can generate a chunked response.
+
+Done: `test_chunked <https://github.com/apache/trafficserver/blob/master/ci/new_tsqa/tests/test_chunked.py>`_
 
 HTTP 1.1 Requests
 =================
