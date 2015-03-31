@@ -50,14 +50,59 @@ We need to test the following scenarios:
 Heuristic Expiration
 ====================
 
+::
 
-Dynamic Content Negotiation
-===========================
+	proxy.config.http.cache.heuristic_min_lifetime
+	proxy.config.http.cache.heuristic_max_lifetime
+	proxy.config.http.cache.heuristic_lm_factor
 
+Test if the heuristic minimum lifetime, maximum lifetime and aging factor take effect.
+
+::
+
+	proxy.config.http.cache.fuzz.time
+	proxy.config.http.cache.fuzz.probability
+	proxy.config.http.cache.fuzz.min_time
+
+Test if the fuzz time, probability and minimum time take effect.
+
+Dynamic Content & Content Negotiation
+=====================================
+
+::
+
+	proxy.config.http.cache.vary_default_text
+
+Test if Traffic Server varies on the specified header for text documents.
+
+::
+
+	proxy.config.http.cache.vary_default_images
+
+Test if Traffic Server varies on the specified header for images.
+
+::
+
+	proxy.config.http.cache.vary_default_other
+
+Test if Traffic Server varies on the specified header for anything other than text and images.
 
 Negative Response Caching
 =========================
 
+::
+
+	proxy.config.http.negative_caching_enabled
+
+Set to ``0``: Test if Traffic Server does not cache negative responses when a requested page does not exist.
+
+Set to ``1``: Test if Traffic Server caches negative responses when a requested page does not exist.
+
+::
+
+	proxy.config.http.negative_caching_lifetime
+
+Set to ``N``: Test if Traffic Server keeps the negative responses valid in cache for ``N`` seconds.
 
 Negative Revalidate
 ===================
@@ -65,6 +110,8 @@ Negative Revalidate
 
 PUSH
 ====
+
+::
 
 	proxy.config.http.push_method_enabled
 
