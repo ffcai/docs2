@@ -58,7 +58,7 @@ Multicert Loading
 
 The ssl_multicert.config file lets you configure Traffic Server to use multiple SSL server certificates to terminate the SSL sessions. If you have a Traffic Server system with more than one IP address assigned to it, then you can assign a different SSL certificate to be served when a client requests a particular IP address or host name.
 
-**Rewrite with new_tsqa**: `test-multicert-loading <https://github.com/apache/trafficserver/blob/master/ci/tsqa/test-multicert-loading>`_
+Rewrite with new_tsqa: `test-multicert-loading <https://github.com/apache/trafficserver/blob/master/ci/tsqa/test-multicert-loading>`_
 
 Privilege Elevation
 ===================
@@ -71,7 +71,7 @@ Set ``records.config``: ::
     CONFIG proxy.config.diags.debug.enabled INT 1
     CONFIG proxy.config.diags.debug.tags STRING 'privileges'
 
-**Rewrite with new_tsqa**: `test-privilege-elevation <https://github.com/apache/trafficserver/blob/master/ci/tsqa/test-privilege-elevation>`_
+Rewrite with new_tsqa: `test-privilege-elevation <https://github.com/apache/trafficserver/blob/master/ci/tsqa/test-privilege-elevation>`_
 
 Verify Client's Certificate
 ===========================
